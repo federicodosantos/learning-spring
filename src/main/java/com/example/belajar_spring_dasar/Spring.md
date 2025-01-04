@@ -53,3 +53,22 @@ Ketika kita membuat method untuk bean di Spring, kita bisa menambahkan paramter.
 Secara otomatis Spring akan mencarikan bean lain yang sesuai dengan tipe paramter tersebut. 
 Jika ternyata tidak ada bean yang cocok, maka secara otomatis akan terjadi error. Dan jika ternyata terdapat bean lebih dari satu,
 secara otomatis akan terjadi error, kecuali terdapat primary bean.
+
+## Circular Dependencies
+Circular dependencies adalah kasus dimana sebuah lingkaran dependency terjadi, misal bean A membutuhkan bean B membutuhkan bean C
+dan ternyata bean C membutuhkan Bean A. Jika terjadi cyclic seperti ini, secara otomatis Spring bisa mendeteksinya dan akan menganggap bahwa itu adalah error
+
+## Depends On
+Depends On digunakan jika ada kasus kita ingin sebuah bean dibuat setelah bean lain dibuat. Kita bisa menggunakan annotation @DependsOn
+Secara otomatis, Spring akan memprioritaskan pembuatan bean yang terdapat di DependsOn terlebih dahulu.
+
+## Lazy Bean
+Secara default, bean di Spring akan dibuat ketika aplikasi Spring pertama kali berjalan.
+Oleh karena itu, kadang ketika aplikasi Spring pertama berjalan akan sedikit lambat, hal ini dikarenakan semua bean akan dibuat di awal.
+Namun, kita bisa membuat bean dimana bean tidak akan dibuat hingga dibutuhkan.
+Hal itu dinamakan sebagai lazy bean. Untuk membuat lazy bean, kita bisa menambahkan annotation @Lazy pada bean tersebut.
+
+## Scope
+Scope merupakan strategi cara sebuah object dibuat. Secara deault strategi objek di Spring adalah singleton, 
+artinya hanya dibuat sekali dan ketika kita akses akan mengembalikan object yang sama.
+Namun kita juga bisa mengubaha scope bean yang kita mau di Spring. Untuk mengubah scop sebuah bean, kita bisa tambahakan annotation @Scope.

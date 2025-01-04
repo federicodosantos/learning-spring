@@ -10,6 +10,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class DependencyInjectionTest {
+    private ApplicationContext context;
+
+    @BeforeEach
+    void setUp() {
+        context = new AnnotationConfigApplicationContext(DependencyInjectionTest.class);
+    }
 
     @Test
     void testDI() {
@@ -21,5 +27,11 @@ public class DependencyInjectionTest {
 
         Assertions.assertSame(foo, fooBar.getFoo());
         Assertions.assertSame(bar, fooBar.getBar());
+    }
+
+    @Test
+    void testDependsOn() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(DependencyInjectionConfiguration.class);
+
     }
 }
